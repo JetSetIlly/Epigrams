@@ -1,0 +1,5 @@
+/* Rexx script to force epigrams to quit */
+
+ADDRESS "epigrams"
+
+Quit

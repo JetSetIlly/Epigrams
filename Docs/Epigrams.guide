@@ -1,0 +1,882 @@
+@DATABASE   "Epigrams"
+@REMARK     Created by Stephen Illingworth
+@$VER:      Epigrams Manual v0.3
+@(C)        ©1995-2020 Stephen Illingworth
+@AUTHOR     Stephen Illingworth
+
+
+@NODE   MAIN    "Epigrams/Main Index"
+
+@{JCENTER}
+    ____   _____ ___ ____   ______   ____ __  _  ____...
+   |  __|______ \___) __/_______ /.__\__ |  \/ \/  _/__.
+   |  _|     \__/   | \__     _/  |  __/ |  \/  \___   |
+tGø|__________| |___|_________\___|______|   \__/ /____|
+                                         |____\-T!
+--- @{B}Epigrams v0.3@{UB} ---
+@{JLEFT}
+
+  @{B}Introductions@{UB}
+    @{" Background           " LINK "Background"}  The concept behind the `fortune cookie'
+    @{" Features             " LINK "Features"}  What Epigrams has to offer
+    @{" Requirements         " LINK "Requirements"}  Other software needed to run Epigrams
+
+  @{B}Usage@{UB}
+    @{" Installation         " LINK "Installation"}  How to arrange Epigrams onto your hard drive
+    @{" Starting Epigrams    " LINK "Starting"}  How to load Epigrams into the system
+    @{" Altering Preferences " LINK "Preferences"}  Customizing Epigrams to your own preferences
+    @{" Error Requesters     " LINK "Errors"}  What kind of error requesters to expect
+    @{" The ARexx Port       " LINK "The ARexx Port"}  How to use the ARexx interface
+
+  @{B}Technical Bits@{UB}
+    @{" File Format          " LINK "File Format"}  A note about the `cookie' file format
+    @{" The Random Number    " LINK "The Random Number"}  My choice of random number algorithm
+
+  @{B}Afterwords@{UB}
+    @{" History              " LINK "History" 10000}  All my triumphs and mistakes in a kind of diary
+    @{" Future Revisions     " LINK "Future"}  What I plan to implement in the future
+    @{" Credits              " LINK "Credits"}  Greetings and salutations to all my pals
+
+@ENDNODE
+
+
+
+@NODE   "Background"    "Epigrams/Background"
+
+@{B}ep-i-gram@{UB} (éppi-gramm) @{I}n.@{UI} @{B}1@{UB}. A short poem expressing a  single  thought  or
+observation  with  terseness  and  wit.  @{B}2@{UB}. A concisely and cleverly worded
+statement, making  a  pointed  observation  and  often  concluding  with  a
+satirical twist @{B}3@{UB}. Discourse or expression by means of such statements.
+[Old French @{I}epigramme@{UI}, from Latin @{I}epigramma@{UI}, from Greek, inscription,  from
+@{I}epigraphein@{UI}, to write on : @{I}epi-@{UI}, on + @{I}graphein@{UI}, to write].
+
+@{B}fortune cookie@{UB} @{I}n. U.S.@{UI} A small oriental cake made  from  a  thin  layer  of
+dough  folded  and  baked  around  a  slip of paper bearing a prediction of
+fortune or maxim.
+
+
+Many  years  ago when the Amiga was but a wet dream, a particular operating
+system  invented  by  AT&T  and perfected by Berkley University was gaining
+immense  popularity  the  world over.  Full of neat features it sported one
+rather  cool  program  called `Fortune Cookie'.  It's basic function was to
+present  to the user on startup of the system, a witty saying or a `thought
+for the day' as it is sometimes known.
+
+There  have been many implementations of this simple idea over the years (I
+have  eleven Amiga versions alone); some being little more than programming
+exercises  I'm  sure,  and  although  others may have taken the idea to new
+realms  they  have  lost  compatibality with the original data files in the
+process.
+
+Epigrams  tries to  avoid the  problems some  implementations  contrive  to
+introduce, whilst adding some neat Amiga specific @{" features " LINK Features}.
+
+@ENDNODE
+
+
+
+@NODE   "Features"    "Epigrams/Features"
+
+Epigrams has one or two Amiga specific features which as far as I am aware,
+make it unique.
+
+@{B}Commodity@{UB}  - Remains resident in memory with a commodities interface for as
+long  as you wish.  Don't worry, a basic installation (no backgrounds etc.)
+takes up about 30k of memory.
+
+@{B}Patterned  Backdrops@{UB}  -  Any  picture file can be used as a backdrop in the
+window.  Small pictures will be tiled and pictures too large for the window
+will  be cropped correctly.  This feature uses datatypes so any file format
+your  system knows about can be used.  (God, I love AmigaOS!).  In addition
+to  this  it is also possible to have a simple, plain colour of your choice
+to fill the window.
+
+@{B}Definable  Fonts@{UB}  -  Any  font  can be specified and used, including vector
+and colour fonts.
+
+@{B}ARexx Interface@{UB} - This allows all the usual benefits of AREXX interfaces in
+programs.   One  use  that  springs to mind would be to write a script that
+prevents  Epigrams  popping  on  startup  if  another  program has opened a
+window,  for  example  a  calander  reminder  program.   (Indeed  it may be
+possible to write a simple AREXX program to allow Epigrams itself to do the
+reminding).
+
+@ENDNODE
+
+
+
+@NODE   "Requirements"    "Epigrams/Requirements"
+
+OS2+, OS3+ for patterned backgrounds (datatypes).
+
+Some datatype definitions.
+
+REQTools for error requesters.
+
+Magic WB palette installed if the supplied picture files are to be used.
+
+@ENDNODE
+
+
+
+@NODE   "Errors"    "Epigrams/Error Requesters"
+
+There  are  two  varieties  of error requester that feature in Epigrams and
+because  you  may  encounter  several  such  requesters during your journey
+through  the  customizing  process, it is worth noting briefly the style of
+output and the kind of information you will encounter.
+
+
+@{B}The Requester Window@{UB}
+
+Both  varieties  of  error requester will take the following form, although
+the buttons at the bottom will vary in number, (see WARNING\\FATAL desc.)
+
+       +---------------------------------------+
+       |  ___________________________________  |
+       | |                                   | |
+       | | <error type>: <error>             | |
+       | |                                   | |
+       | |  --- <cause\\solution             | |
+       | |          to error>                | |
+       | |___________________________________| |
+       |   ____________         ____________   |
+       |  |            |       |            |  |
+       |  |____________|       |____________|  |
+       +---------------------------------------+
+
+The  text  enclosed  in  angled  brackets,  signify what the meaning of the
+information in those locations will be.  Specifically,
+
+Error Type -- Whether the error is a FATAL or a WARNING requester.
+
+Error -- What the error actually is.
+
+Cause\\Solution To Error --- Possible  reasons for  the error to occur (eg.
+        low memory). Also any ideas that may alert you to the correction of
+        the problem. Note that this body of text may consume several lines.
+
+
+@{B}The Fatal Requester@{UB}
+
+The  first  variety  of  requester will signify a serious error encountered
+during the loading process.  Very often, the source of the problem will lay
+with  the  current  state  of  the system rather than with Epigrams itself.
+(eg.   low memory).
+
+In  the instance of a fatal requester, you will have no option but to QUIT;
+that is, the Epigrams commodity being removed from the system.
+
+
+@{B}The Warning Requester@{UB}
+
+The  other  requster type, is the warning requester.  An error of this type
+will occur when a resolvable or `non-too-serious' problem has arisen.  (eg.
+bad POPKEY definition).
+
+All  warning  requesters will present two options.  The first, being a QUIT
+option -- signifying that you no longer wish to proceed with the program in
+it's current state; And the second, a CONTINUE option, allowing the program
+to proceed using default parameters or with the option disabled.
+
+@ENDNODE
+
+
+
+@NODE   "The ARexx Port"   "Epigrams/The Arexx Port"
+
+The ARexx port belonging to Epigrams is the usual command host, so there is
+nothing  particularly  new  or  unusual  about  writing  ARexx  scripts  to
+interface with Epigrams. 
+
+
+@{B}ADDRESSING  EPIGRAMS@{UB}  Before RexxMaster can interpret your script properly,
+you  must instruct it which host environment to send the commands to.  This
+is done by including the line,
+
+    Address 'Epigrams'
+
+
+@ENDNODE
+
+
+
+@NODE   "The Random Number"   "Epigrams/The Random Number"
+
+All  Epigrams random number modes employ the same basic philosophy.  That a
+number between 0 and the size of the file can be randomized and the Epigram
+nearest  to that byte position in the file will then be displayed.  This is
+a  radically  different  approach  to  the method employed by all the other
+fortune  cookie  programs  I've  seen,  where  a @{" hash file " LINK "Hash
+File"} is used.
+
+    @{" Basic " LINK "Basic PRNG"}
+    @{" Basic + Modifier " LINK "Mod PRNG "}
+    @{" MD5 Hashing " LINK "MD5 PRNG"}
+
+@ENDNODE
+
+
+
+@NODE   "History"   "Epigrams/History of Epigrams"
+
+v0.100  17-Aug-95
+
+            initial version
+
+                -- commodity
+                -- simple font usage -- topaz8
+                -- simple borders
+                -- fixed data file reference
+
+
+v0.101  19-Aug-95
+
+             ** BUG FIX **
+
+            fixed a bug caused, apparently, by the code created by
+                gadtoolsbox.
+
+            not 'unlocking' the workbench screen once window was open.
+
+            first noticed possible ramifications of this when some of the
+                intuition widgets were corrupted. whether epigrams caused
+                this is unknown but the problen subsided in coincidence
+                with this version.
+
+-=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=-
+
+v0.110  20-Aug-95
+
+             ** ENHANCEMENT **
+
+            added tooltypes
+
+                -- CX_POPKEY tooltype
+                -- POPONSTARTUP tooltype
+                -- POPTOFRONT tooltype
+
+
+v0.111  30-Aug-95
+
+             ** CODE IMROVEMENT **
+
+            refined random routine
+
+
+v0.112  1-Sep-95
+
+             ** FLAW FIX **
+
+            made it so that on POPONSTARTUP, POPTOFRONT doesn't work
+                even if specified. So that some bootscreen progs. exit
+                when they're supposed to.
+
+
+-=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=-
+
+v0.120  8-Sep-95
+
+             ** ENHANCEMENT **
+
+            added INNERBORDER tooltype - in need of polishing
+
+                NB/
+                    this option uses the 'DrawBevelBox' function,
+                  this is found in the Gadtools Library so code
+                  is a little larger.
+
+
+             ** ENHANCEMENT **
+
+            added DATAFILE tooltype
+
+
+v0.121  29-Sep-95
+
+             ** BUG FIX **
+
+            previous versions occasionally 'hung' while accessing
+                the file in question. This was tracked down to 'line
+                counting' routine in the main code. It is thought
+                that the program was getting itself in a infinite loop
+                by reading past the end of the file.
+
+            rectified this by enabling the recognition of 'empty'
+                file - once the end of the file is reached it 'loops'
+                to the top of the file; if the EOF is encoutered
+                again, the file is empty.
+
+
+v0.130 21-Dec-95
+
+             ** ENHANCEMENT **
+
+            RMB now quits when window is activated
+
+-=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=-
+
+v0.140 21-Dec-95
+
+             ** ENHANCEMENT **
+
+            more configurable border options.
+
+-=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=-
+
+v0.150  22-Dec-95
+
+             ** ENHANCEMENT **
+
+            added configurable fonts (hurra?)
+
+                FONT=
+                FONTSIZE=
+
+
+             ** ENHANCEMENT **
+
+            refined border rendering
+
+            added XPAD, YTOP, YBOT & LSPACE tooltypes
+
+
+             ** ENHANCEMENT **
+
+            added ability for rightmouse button to bring up new epigram
+                thanx stu!
+
+
+             ** ENHANCEMENT **
+
+            got some cookie files with Horizontal TABs in.
+            Quick hack so TABs come out as a single space.
+
+            needs refining
+
+-=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=-
+
+v0.200  22-Jan-96
+
+             ** MAJOR ENHANCEMENT **
+
+            !!!!!!!!!!!!!PATTERNED BACKDROPS!!!!!!!!!!!!!
+
+
+v0.201  22-Jan-96
+
+             ** CODE IMPROVEMENT **
+
+            speeded up GUI popping by opening datatype object only
+            on startup
+
+-=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=-
+
+v0.210  22-Jan-96
+
+             ** ENHANCEMENT **
+
+            added pen option
+
+
+v0.221  25-Jan-96
+
+             ** FIRST BETA RELEASE ** dave
+
+             ** ENHANCEMENT **
+
+            now centres properly on any size screen. Duh!
+
+
+v0.212 25-Jan-96
+
+             ** BUG FIX **
+
+            novel idea. freeing bitmaps.
+                thanx dave!
+
+
+v0.213 27-Jan-96
+
+             ** ENHANCEMENT **
+
+            now window can be activated without quitting
+                -- double click to quit
+
+
+             ** CODE CHANGE **
+
+            improved random function -- still not adequate.
+
+
+v0.214 30-Jan-96
+
+             ** ENHANCEMENT **
+
+            made it so window closes only on system double-click
+
+
+             ** CODE CHANGE **
+
+            tried another random number routine
+
+
+v0.215 20-Mar-96
+
+             ** CODE CHANGE **
+
+            changed seeding method -- seeds as soon as message is recieved
+
+
+             ** ENHANCEMENT **
+
+            new tooltype `TEST' -- writes byte position to
+                `SYS:Epigrams.test'
+
+-=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=-
+
+v0.220 07-Apr-96
+
+             ** ENHANCEMENT **
+
+            added option to print output from an external program
+
+            EXTERN=<name of program>
+
+            works by writing the output into "T:epigrams.external"
+                and letting the main part of the program compile that.
+
+            WILL NEED A THOROUGH TESTING.
+
+
+             ** PROBLEM **
+
+            noticed that program crashes -- `freemem' error -- when program
+                is deactivated. Needs sorting out, but have `fixed it temp.
+                by allowing the program to exit when `deactivated' is selected
+                from a commodities exchange.
+
+-=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=-
+
+v0.230 21-Apr-96
+
+            ** CODE CHANGE **
+
+            major code reorginazation. Up until now all files where included
+                from the root directory -- not very efficient. Replaced it
+                with `smake' method.
+
+            rewrote commodities initialization code; including the `dynamic'
+                printing of the chosen hotkey in the CX description - is
+                this bad style?
+
+
+        23-Apr-96
+
+             ** BUG FIX **
+
+            fixed `freemem' error discovered in v2.20. i was freeing
+                bit map more than once! worth remembering that OS
+                doesn't check for unused structures.
+
+
+        24-Apr-96
+
+             ** CODE CHANGE\ENHANCEMENT **
+
+            now able to launch from CLI. This was made possible by the
+                discovery of a rather nifty `amiga.lib' function
+                `ArgArrayInit'; put simply, no need to rewrite seperate
+                CLI parameter code.
+
+                -- only bug is when launching from CLI when program is
+                already running. The program quits as it should, but
+                the CLI shell doesn't return.
+
+
+             ** CHANGE **
+
+            altered `CX_POPKEY' to `POPKEY'. makes it easier to type
+                into CLI.
+
+
+v0.231 13-May-96
+
+             ** CODE CHANGE\ENHANCEMENT **
+
+            TABs now map properly to spaces. User definable with TABSIZE
+                option.
+
+            MAXLINESIZE user definable. Possible visual error if epigram
+                entry is bigger than bitmap screen, (eg. if MAXLINESIZE is
+                stupidly small, the window is a thin column down the screen),
+                not too serious however as there are no illegal memory
+                writes -- at least I think not :-)
+
+
+v0.232 06-Jun-96
+
+             ** BUG FIX **
+
+            fixed bug that occured when re-launching the program -- the
+                commodity would be notified and would then quit, but the
+                task would still remain. the cause of this was neglecting
+                to check the errors returned by `CxBroker()' properly.
+                doh!!!
+
+                this also fixes the small problem with the CLI not
+                returning if the program is relaunched.
+
+-=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=-
+
+v0.240 16-Jun-96
+
+             ** ENHANCMENT **
+
+            added new tooltype RELAUNCH, allowing the user to specify the
+                action to take upon the relaunching of the program.
+
+            possible options to date are/
+
+                POP -- pop up a new window with new epigram (default)
+
+                QUIT -- kill commodity
+
+
+             ** CODE CHANGE **
+
+            tried yet another random number routine, pinched from BCPL
+                manual. (I'm beginning to suspect that I'm completely
+                missing the point about random numbers.)
+
+
+v0.241 17-Jun-96
+
+             ** ENHANCEMENT **
+
+            changed POPONSTARTUP so that it takes options instead of being
+                just on or off.
+
+            possible options to date
+
+                NEVER -- never pop on startup (default)
+
+                ALWAYS -- always pop on startup
+
+                ONCEADAY -- only pop if epigrams hasn't been started
+                            to day. uses a file saved in ENV:/ENVARC:
+                            to record the appropriate date information.
+                            NB/ Epigrams still reacts to restarts, hotkeys,
+                            etc. as normal; only startup is affected.
+
+
+             ** CODE CHANGE **
+
+            changed back to random routine before the change made in v2.41.
+                WHY CAN'T I FIND A SUITABLE ALGORITHM????? =-(
+
+
+v0.242 24-Jun-96
+
+             ** ENHANCEMENT **
+
+            POPBACK is now an option! I discovered how to record the front
+                most screen so that we can bring it to the front once the
+                epigrams window is closed. This will be very smart when I
+                implement the `timer' option 
+
+            User can now specify BEVEL=SYSTEM (which is now the default),
+                this simply draws the window border in the system style;
+                just in case somebody writes a brilliant program whereby
+                the user can change the border style for the entire system.
+
+
+             ** CODE CHANGE **
+
+            fixed it so that tooltypes are case insensitive, doh!
+
+            screen titles and cx title changed to a new, preffered style.
+
+            removed the `dynamic' cx description added in v2.30; I decided
+                I didn't like it.
+
+
+v0.243 25-Jun-96
+
+             ** ENHANCEMENT **
+
+            FONT tooltype can now specify SCREEN so that Epigrams can use
+                the default Screen Font. NB/ Epigrams checks to see what
+                the screen font is at each window pop.
+
+            all `WARNING' requesters now have some sort of QUIT option.
+                NB/ `FATAL' requesters will quit automatically anyway.
+
+
+             ** CODE CHANGE **
+
+            rewrote commodities initialization code so that errors are
+                tolerated more graciously.
+
+
+v0.244 15-Jul-96
+
+             ** ENHANCEMENT **
+
+            added tooltype EXTERNAL% so that we can mix external and
+                non-external Epigrams (the higher the %, the more
+                likely an external will occur). Defaults to 100
+
+
+v0.245 05-Sep-96
+
+             ** BUGFIX **
+
+            enforcer hit when attempting to close font if opening
+                was unsuccessful
+
+
+v0.246 22-Sep-96
+
+             ** ENHANCEMENT **
+
+            window closes on press of ESC key
+
+            added tooltype NOESCAPE, disabling the above property
+
+
+v0.247 30-Sep-96
+
+             ** ENHANCEMENT **
+
+            added about requester on help key press
+
+            displays file name of data file used - no path part -
+                and byte position
+
+
+             ** CODE CHANGE **
+
+            tidied up code a bit - those bits where we print out version
+                info etc.
+
+
+v0.248 20-Oct-96
+
+             ** ENHANCEMENT **
+
+            fixed POPBACK routines so that when a new window is requested
+            it doesn't pop back to original screen until we exit the
+            `session'
+
+-=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=-
+
+v0.250 28-Oct-96
+
+             ** ENHANCEMENT **
+
+            added rexx port! available commands
+
+                POPUP
+                POPOFF
+                QUIT
+
+            added tooltype NOREXX, suppressing the creation
+                of a rexx port
+
+
+v0.251 5-Nov-96
+
+             ** CODE CHANGE **
+
+            changed random code yet again
+
+            tidied up IDCMP code
+
+
+             ** ENHANCEMENT **
+
+            new epigram on press of return key
+
+
+v0.252 6-Jan-97
+
+             ** ENHANCEMENT **
+
+            changed tooltyping, BACKGROUND to BGPATTERN
+
+            possible to have a simple background colour instead of a bitmap,
+                tooltype BGCOLOUR with pen number; has a lower `priority'
+                than BGPATTERN so is overidden if BGPATTERN is valid
+
+
+v0.253 27-Jan-97
+
+             ** CODE CHANGE **
+
+            tidied up code a little bit
+
+
+             ** ENHANCEMENT **
+
+            added RANDOMMODE tooltype so that the user can play with
+                different PRNG algorithms. available parameters
+
+                BASIC       -- your normal, boring PRNG
+                MODIFIER    -- as above, but modifys the number by 10%
+                                of file size, up or down
+
+            about requester now includes RANDOMODE info.
+
+
+v0.254 16-Mar-97
+
+             ** CODE CHANGE **
+
+            corrected a minor error in commodity.c file
+
+
+v0.260 03-Apr-97
+
+             ** ENHANCEMENT **
+
+            added new RANDOMMODE option
+
+                MD5     -- a 16 bit digest is repeatedly MD5'd to
+                            to generate the random number. The digest is
+                            saved, in between use so popup is a touch
+                            slower than normal.
+
+
+v0.261 25-May-97
+
+             ** ENHANCEMENT **
+
+            user can now save the current cookie to a `favourites' file
+                upon the press of the F1 key. this key will probably,
+                be definable in the future.
+
+            new tooltype FAVEFILE to support this.
+
+
+             ** CODE CLEAN-UP **
+
+            tidied up cookie.c file so it's far more procedurized,
+                hopefully leaving it easier to add features later on
+
+            cleaned up the other files also
+
+
+             ** COSMETIC CHANGE **
+
+            window size is now calculated properly - minor errors
+                before.
+
+            Commodity Information and About Text is now different
+
+            Error requesters now specify filenames if appropriate
+
+
+v0.262 20-Jan-98
+
+             ** CODE CLEAN-UP **
+
+            started to introduce structure usage as opposed to global
+
+
+             ** COSMETIC HACK **
+
+            quick hack to produce shadows under the text. looks nice,
+                so i'll spruce up the code a bit:)
+
+
+v0.263 01-Feb-98
+
+             ** COSMETIC HACK (DENIED!) **
+
+            took out the silly hack introduced in the last version (i'll
+                keep it in mind though for future versions:)
+
+
+             ** BUGFIX **
+
+            fixed a long standing bug caused by Mungwall refusing certain
+                input to the Epigrams window. This was caused by attempting
+                to reference info in the IMsg structure after it had been
+                replied to. Pretty obvious really.
+@ENDNODE
+
+
+
+@NODE   "Future"    "Epigrams/Future Revisions"
+
+Although  Epigrams is fully working, there are I feel, several improvements
+that would add greatly to the program.
+
+
+@{B}GUI PREFERENCES  PROGRAM@{UB}  As  yet  I  am  unsure  how  this  will  be  best
+implemented.  It  will  very probably be in the from of an external program
+(perhaps an overlay file?) that will save the changes to the main program's
+icon;  with,  possibly,  immediate changes to an already running epigrams -
+the information being passed through a standard message port.
+
+Another  possibility  is  to  partly  dispense  with  tooltypes  and have a
+`preferences file' containing all the preference information.  An upshot of
+this  would be the ability to save much more complex preferences than would
+comfortably be allowed with tooltypes.
+
+
+@{B}MULTIPLE  COOKIE  FILES@{UB}     Again I am currently debating with myself about
+how  best  to  implement  this as several problems may arise.
+
+Firstly, how will Epigrams adequately select a cookie from many files?  One
+common  solution  is  the use of hash tables; This would require however, a
+deliberate  use  of  a  hashing program by the user - a poor solution in my
+view;  particularly  as one of the beauties of Epigrams as it stands at the
+moment,  is it's ability to use any cookie file without any prior knowledge
+of it's contents.
+
+However,  to  briefly  demonstrate  the  problem  of NOT using a hash table
+consider the following.
+
+    1 file with 10000 epigrams
+    2 file with 1000 epigrams
+    1 file with 1 epigram
+
+A  simple  algorithm  would  say  -
+
+   1. Randomize  which  file to use
+   2. Randomize which epigram in that file to display
+
+(see @{" `The Random Number' " LINK "The Random Number"} for Epigrams method of point 2).
+
+However,  this  is plainly absurd as the single epigram in the last file in
+the list will be selected 1\\4 of the time, whilst any single epigram in one
+of the 1000 epigram file will be selected only 1\\2000 of the time; and even
+worse,  an  epigram  in  the  largest  file  will arise only 1\\10000 of the
+time!!!   There is a rather elegant solution based on the current method of
+randomizing  epigrams,  but quite frankly I can't be bothered to explain it
+here :-)
+
+Another  potential  stumbling  block,  is  how  to  store  the data telling
+Epigrams  which  files to use.  The easy way is to record the filenames and
+paths in a seperate file and instruct Epigrams to read that.  Another, more
+desirable  solution  in  my  view,  is  to  set aside a `special' directory
+containing  the cookie files.  It would then be a simple matter of scanning
+that  directory  tree.   A  problem with this however is when to rescan the
+directory;  every  window  pop?   - potentially very slow; or only when the
+program is started?
+
+
+@{B}LOCALE@{UB} Not wanting to forget my foreign friends, this will prove useful not
+only  for  the  preferences  program  described  above,  but  for the error
+requesters  also.   It may also be possible to allow\\disallow certain data
+files  using  the  locale system.  ie.  English data files only for English
+users etc.
+
+
+@{B}NETWORK  SUPPORT@{UB} A particularly ambitious idea is to allow the full support
+of  reading  datafiles  over networks.  A spinoff of this would be to allow
+the Sysop to send brief messages to users using the Epigrams interface.
+
+@ENDNODE

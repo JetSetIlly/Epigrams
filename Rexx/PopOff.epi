@@ -1,0 +1,5 @@
+/* Rexx script to force an epigrams windows to close */
+
+ADDRESS "epigrams"
+
+PopOff

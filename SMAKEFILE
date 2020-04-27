@@ -1,0 +1,53 @@
+# ------------------------------------------
+#  Epigrams Makefile
+#
+
+
+
+# ------------------------------------------
+#  Variables
+#
+
+NAME        = Epigrams
+DEBUGNAME   = Epigrams.debug
+GST         = System.gst
+LINKFLAGS   = NOICONS MAP RAM:Map H X S F L O
+LIBS        = LIB:sc.lib LIB:amiga.lib LIB:reqtools.lib LIB:reqtoolsnb.lib
+
+
+
+# ------------------------------------------
+#  Default rules
+#
+.c.o:
+    SC gst=$(GST) $*.c DEBUG=LINE
+
+.h.gst:
+    SC MAKEGST=$(GST) NOOBJNAME $*.c
+
+
+
+# ------------------------------------------
+#  Makefile dependencies
+#
+
+ALL: $(GST) $(NAME)
+
+OBJS = Backdrop.o Commodity.o Cookie.o Epigrams.o External.o GUI.o Rexx.o Support.o
+
+$(NAME): $(OBJS)
+    Slink FROM LIB:c.o $(OBJS) TO $(DEBUGNAME) $(LINKFLAGS) LIB $(LIBS)
+    Slink FROM $(DEBUGNAME) TO $(NAME) NODEBUG
+
+$(GST):         System.h
+
+Backdrop.o:     Backdrop.c  Backdrop.h  Public.h Public_Prototypes.h Version.h System.h
+Commodity.o:    Commodity.c Commodity.h Public.h Public_Prototypes.h Version.h System.h
+Cookie.o:       Cookie.c    Cookie.h    Public.h Public_Prototypes.h Version.h System.h
+Epigrams.o:     Epigrams.c  Epigrams.h  Public.h Public_Prototypes.h Version.h System.h
+External.o:     External.c  External.h  Public.h Public_Prototypes.h Version.h System.h
+GUI.o:          GUI.c       GUI.h       Public.h Public_Prototypes.h Version.h System.h
+Rexx.o:         Rexx.c      Rexx.h      Public.h Public_Prototypes.h Version.h System.h
+Support.o:      Support.c   Support.h   Public.h Public_Prototypes.h Version.h System.h MD5_PRNG.c Logo.h
+
+System.o:       System.c    System.h

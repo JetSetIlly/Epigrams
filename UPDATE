@@ -1,0 +1,10 @@
+echo "*e[3mcopying Epigrams to `WBStartup'*e[0m"
+copy Epigrams SYS:WBStartup/Epigrams
+
+echo "*e[3mremoving old version of Epigrams from commodities list*e[0m"
+HandleCX Epigrams REMOVE
+
+WAIT SEC 1
+
+echo "*e[3mlaunching new version of Epigrams*e[0m"
+WBLoad >NIL: SYS:WBStartup/Epigrams
